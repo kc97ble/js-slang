@@ -225,9 +225,21 @@
         "version": "59562138c7708ec3c3f27078043cffac21e04b66e85a79ae6d080df44c13f469",
         "signature": "c756ef3ff2ae888806149db70980714471301a48c2167bc073fede1d41dc4b15"
       },
-      "./src/utils/dummyAstCreator.ts": {
-        "version": "99f4762c46f6f54be6e8e90c559fe888a230550841cf425c5a8035cfc0e3acf6",
-        "signature": "2a6adab83b8af8082abca4fc58128e0ea925ad9b007292af6593e46ef68800a5"
+      "./src/errors/validityErrors.ts": {
+        "version": "983cb974a187ea91a990a02f2efaddfacd4f6bfbdb4c7ddfe6cf3958cda4b443",
+        "signature": "7aab63a16237687ac0b1ae3cc8ef71c212363aecd60ea187c386422764035e68"
+      },
+      "./src/validator/validator.ts": {
+        "version": "87e50164fc718942dc5829ddbfc126a2b4f37d5be981748786a41b8beffc671e",
+        "signature": "a97f5b33af9a7bb36a2c06b6ed20e5ac11f97c2128cee0d67d3769cb4bff3202"
+      },
+      "./src/index.ts": {
+        "version": "8833187f85fa6673d3e0aae6dfa1bbd877df057de400a9a66875b1c1730cb856",
+        "signature": "7706ba1d98827a075cb7396e317261c2cf078826c524e937e9fe5d7e7555068e"
+      },
+      "./src/stdlib/inspector.ts": {
+        "version": "ce03e7980c5d89ae9053a55d313c7b1eef2509b98ee90bea206f68047d261572",
+        "signature": "c60cf4f612d729df3683ebe68856d7f966b36c0d1b4b74f1a9ed7b75fea926f9"
       },
       "./src/errors/timeoutErrors.ts": {
         "version": "482a5897e25dab6640ddf360e903b1d773e478ccef84a937eacf27b8baefd06b",
@@ -241,57 +253,13 @@
         "version": "19d0af868ff63a638a277740db4ca00d65ef5162b9a5124fc02a10b11dca3d66",
         "signature": "353f179af893deece94c3b23c4ed1fd1cad1fa6353f67e9d982cb730f5cfbe1e"
       },
-      "./src/mocks/context.ts": {
-        "version": "9cebaf2c706dcf814262483ce3e7f6e6f1153d43f4658ea577c23f9139fdb3c9",
-        "signature": "ebc2b2f31dd802ed89eb9155afc04f0c381570c5f449a733a06f74531f7d7c50"
-      },
-      "./src/stdlib/misc.ts": {
-        "version": "a2aebc09fe31e04507d55760ea1ac52aeed465c447ab5d2734730db07c55166e",
-        "signature": "3c0b5e847bd679653b3c00d8fb7f45c1a67460286db2c39963752e751d3ee279"
-      },
-      "./src/stepper/util.ts": {
-        "version": "d04fc44d0a7f54870e9793a02114d32f9986adbbaab18afd31c151a5378b1cbd",
-        "signature": "409960ca842600864b29609f450dbd70826c7c051bc2b14a6243eed353c86fc4"
-      },
-      "./src/stepper/lib.ts": {
-        "version": "cc590bb66c71ab5ce5c9a6f8999eb37819d93fe5cbfc46725b8479c14861c35b",
-        "signature": "47bbb5f513f4a54e7415bfba84b365cf2e6a77b857bdaf535779aab769f0bfaf"
-      },
-      "./src/stepper/converter.ts": {
-        "version": "3d4189d51e208d3cfe09232938f190274100a6ca9280d27fc1dd62d16ab18d80",
-        "signature": "8c47bbb17788f7e99ab9cc0b4125d05a88830e0b416d6604bf029a85815bfb4e"
-      },
-      "./src/stepper/stepper.ts": {
-        "version": "a40b62a9c099481011bf7ff29ba4636e1807d6a4d845af815e28cd8b6b040690",
-        "signature": "d446d9f159a658129bc129bcc51aa2379e021aa01e9120bb5f7f18a1bf835d81"
-      },
-      "./src/transpiler/evalContainer.ts": {
-        "version": "b467896ca0ee3052006b88d9913d1a028cabfa73a8ff5e1fa9a21c9d3a4f032e",
-        "signature": "d5f44ee024d724305c449d237dbf4f05686cfe01cf365a6c88839c930fb983e5"
-      },
-      "./src/transpiler/transpiler.ts": {
-        "version": "f640fd0bf4b1c03c5038a57fe3dace44e07dd9fd9d42805f3c9c19e3df8641d3",
-        "signature": "defb95eb9bfc044d654745c961690a9cfad2eaa1e53e489faa95446707de18da"
-      },
-      "./src/errors/validityErrors.ts": {
-        "version": "983cb974a187ea91a990a02f2efaddfacd4f6bfbdb4c7ddfe6cf3958cda4b443",
-        "signature": "7aab63a16237687ac0b1ae3cc8ef71c212363aecd60ea187c386422764035e68"
-      },
-      "./src/validator/validator.ts": {
-        "version": "87e50164fc718942dc5829ddbfc126a2b4f37d5be981748786a41b8beffc671e",
-        "signature": "a97f5b33af9a7bb36a2c06b6ed20e5ac11f97c2128cee0d67d3769cb4bff3202"
-      },
-      "./src/index.ts": {
-        "version": "7fe7a2049b87c8f7f48155a1cde73c693e37a578ff8f1b1313df711ca9dbe001",
-        "signature": "b9c726071f55fb39f3d7ce905dd65ce215d116c628e67c148e2207a25882063d"
-      },
-      "./src/stdlib/inspector.ts": {
-        "version": "ce03e7980c5d89ae9053a55d313c7b1eef2509b98ee90bea206f68047d261572",
-        "signature": "c60cf4f612d729df3683ebe68856d7f966b36c0d1b4b74f1a9ed7b75fea926f9"
+      "./src/interpreter/thunk.ts": {
+        "version": "3337dfa88c92870acf76a662ba43d80d6c56a62193e886275a8d36b000acac1f",
+        "signature": "538f3f92cae8145934ddef1e4c6153cacb9a179dce18e332f032bd3a92605532"
       },
       "./src/interpreter/interpreter.ts": {
-        "version": "6a1fb700ca48998437269b28932f4ec290945de1830145aa53964d7b3f95eb0e",
-        "signature": "776540ff5a9dee5b8456d0c4cdad40c84b6a1534c4b298421a04b1c169ed5d17"
+        "version": "21acda7a5283b16a04def0478aa856c166114ca72821956d685613a50202e852",
+        "signature": "f604f64f41537b453da88c8cd6741c0c032082fa381adac3e2a88c64fa68e605"
       },
       "./src/interpreter/closure.ts": {
         "version": "948d4c07337c5a372e8e91153ecb0dd3a7785dc02808e4a69dbfbbf62c5a8753",
@@ -317,6 +285,10 @@
         "version": "562ebab6504ef21a390390c1be9590b91efb3f2e256f92c7a46fb18a69a473e3",
         "signature": "c3d15305daa626ed5b3e6d0ccd9b0cfca7d9c0223381b0ebf5079786863b1d52"
       },
+      "./src/stdlib/misc.ts": {
+        "version": "a2aebc09fe31e04507d55760ea1ac52aeed465c447ab5d2734730db07c55166e",
+        "signature": "3c0b5e847bd679653b3c00d8fb7f45c1a67460286db2c39963752e751d3ee279"
+      },
       "./src/stdlib/parser.ts": {
         "version": "3b678e4c28752da1a2776d608cd4ea4c7f3a86d9793b15758334c76a95b2676b",
         "signature": "f6762597c5d302c49e5d0c789e7e8bf52d4a16c9127bf23a3855dc608df23a45"
@@ -332,6 +304,14 @@
       "./src/createContext.ts": {
         "version": "cf32cc13d59f140b0a2aafd46449fa5645ba717e05b41533c33d2a0b61f8d190",
         "signature": "f1acccdd1c4963d54642d8af5adf1e7c1511bbf9629bd30c2262bc4dce5e7450"
+      },
+      "./src/mocks/context.ts": {
+        "version": "9cebaf2c706dcf814262483ce3e7f6e6f1153d43f4658ea577c23f9139fdb3c9",
+        "signature": "ebc2b2f31dd802ed89eb9155afc04f0c381570c5f449a733a06f74531f7d7c50"
+      },
+      "./src/transpiler/transpiler.ts": {
+        "version": "f640fd0bf4b1c03c5038a57fe3dace44e07dd9fd9d42805f3c9c19e3df8641d3",
+        "signature": "defb95eb9bfc044d654745c961690a9cfad2eaa1e53e489faa95446707de18da"
       },
       "./src/utils/testing.ts": {
         "version": "e52d146e69f7e95169b3e79421eb5b1e813ce99cd2ca2ec99d9d225137b6ccad",
@@ -425,9 +405,33 @@
         "version": "c685cd86c2bfa5c59dd88411db685732159064f80bd4647b4147925062bb540e",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
+      "./src/utils/dummyAstCreator.ts": {
+        "version": "99f4762c46f6f54be6e8e90c559fe888a230550841cf425c5a8035cfc0e3acf6",
+        "signature": "2a6adab83b8af8082abca4fc58128e0ea925ad9b007292af6593e46ef68800a5"
+      },
+      "./src/stepper/util.ts": {
+        "version": "d04fc44d0a7f54870e9793a02114d32f9986adbbaab18afd31c151a5378b1cbd",
+        "signature": "409960ca842600864b29609f450dbd70826c7c051bc2b14a6243eed353c86fc4"
+      },
+      "./src/stepper/stepper.ts": {
+        "version": "a40b62a9c099481011bf7ff29ba4636e1807d6a4d845af815e28cd8b6b040690",
+        "signature": "d446d9f159a658129bc129bcc51aa2379e021aa01e9120bb5f7f18a1bf835d81"
+      },
+      "./src/stepper/lib.ts": {
+        "version": "cc590bb66c71ab5ce5c9a6f8999eb37819d93fe5cbfc46725b8479c14861c35b",
+        "signature": "47bbb5f513f4a54e7415bfba84b365cf2e6a77b857bdaf535779aab769f0bfaf"
+      },
+      "./src/stepper/converter.ts": {
+        "version": "3d4189d51e208d3cfe09232938f190274100a6ca9280d27fc1dd62d16ab18d80",
+        "signature": "8c47bbb17788f7e99ab9cc0b4125d05a88830e0b416d6604bf029a85815bfb4e"
+      },
       "./src/stepper/__tests__/stepper.ts": {
         "version": "b7b5ffed476adb6469f13fac91d51e43d62e1c5ff1994734e061d167cbe05b9c",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "./src/transpiler/evalContainer.ts": {
+        "version": "b467896ca0ee3052006b88d9913d1a028cabfa73a8ff5e1fa9a21c9d3a4f032e",
+        "signature": "d5f44ee024d724305c449d237dbf4f05686cfe01cf365a6c88839c930fb983e5"
       },
       "./src/transpiler/__tests__/native.ts": {
         "version": "3d9ad4c391426d6dc1b8f2af4022f7c39afc0f2a3a10f2162b6454126af87557",
@@ -1145,8 +1149,45 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "./src/utils/dummyAstCreator.ts": [
+      "./src/errors/validityErrors.ts": [
         "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/validator/validator.ts": [
+        "./src/typings/acorn-walk.d.ts",
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/errors/errors.ts",
+        "./src/errors/validityErrors.ts",
+        "./src/types.ts",
+        "./src/utils/astCreator.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/index.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./node_modules/source-map/source-map.d.ts",
+        "./src/createContext.ts",
+        "./src/errors/errors.ts",
+        "./src/interpreter/interpreter.ts",
+        "./src/parser/parser.ts",
+        "./src/schedulers.ts",
+        "./src/stdlib/inspector.ts",
+        "./src/types.ts",
+        "./src/validator/validator.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/stdlib/inspector.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/index.ts",
         "./src/types.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
@@ -1187,144 +1228,8 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.5/util.d.ts"
       ],
-      "./src/mocks/context.ts": [
+      "./src/interpreter/thunk.ts": [
         "./node_modules/@types/estree/index.d.ts",
-        "./src/createContext.ts",
-        "./src/interpreter/closure.ts",
-        "./src/types.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stdlib/misc.ts": [
-        "./src/types.ts",
-        "./src/utils/stringify.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stepper/util.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/types.ts",
-        "./src/stepper/lib.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stepper/lib.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/stdlib/misc.ts",
-        "./src/types.ts",
-        "./src/utils/astCreator.ts",
-        "./src/stepper/converter.ts",
-        "./src/stepper/stepper.ts",
-        "./src/stepper/util.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stepper/converter.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/mocks/context.ts",
-        "./src/parser/parser.ts",
-        "./src/types.ts",
-        "./src/stepper/lib.ts",
-        "./src/stepper/stepper.ts",
-        "./src/stepper/util.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stepper/stepper.ts": [
-        "./src/typings/astring.d.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/errors/errors.ts",
-        "./src/parser/parser.ts",
-        "./src/types.ts",
-        "./src/utils/astCreator.ts",
-        "./src/utils/dummyAstCreator.ts",
-        "./src/utils/operators.ts",
-        "./src/utils/rttc.ts",
-        "./src/stepper/converter.ts",
-        "./src/stepper/lib.ts",
-        "./src/stepper/util.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/transpiler/evalContainer.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/transpiler/transpiler.ts": [
-        "./src/typings/acorn-walk.d.ts",
-        "./src/typings/astring.d.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./node_modules/source-map/source-map.d.ts",
-        "./src/constants.ts",
-        "./src/types.ts",
-        "./src/utils/astCreator.ts",
-        "./src/errors/errors.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/errors/validityErrors.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/types.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/validator/validator.ts": [
-        "./src/typings/acorn-walk.d.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/errors/errors.ts",
-        "./src/errors/validityErrors.ts",
-        "./src/types.ts",
-        "./src/utils/astCreator.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/index.ts": [
-        "./src/typings/acorn-walk.d.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./node_modules/source-map/source-map.d.ts",
-        "./src/constants.ts",
-        "./src/createContext.ts",
-        "./src/errors/errors.ts",
-        "./src/errors/runtimeSourceError.ts",
-        "./src/interpreter/interpreter.ts",
-        "./src/parser/parser.ts",
-        "./src/schedulers.ts",
-        "./src/stdlib/inspector.ts",
-        "./src/stepper/stepper.ts",
-        "./src/transpiler/evalContainer.ts",
-        "./src/transpiler/transpiler.ts",
-        "./src/types.ts",
-        "./src/utils/astCreator.ts",
-        "./src/validator/validator.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.5/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.5/util.d.ts"
-      ],
-      "./src/stdlib/inspector.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/index.ts",
-        "./src/types.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -1341,6 +1246,7 @@
         "./src/utils/operators.ts",
         "./src/utils/rttc.ts",
         "./src/interpreter/closure.ts",
+        "./src/interpreter/thunk.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -1399,6 +1305,14 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "./src/stdlib/misc.ts": [
+        "./src/types.ts",
+        "./src/utils/stringify.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "./src/stdlib/parser.ts": [
         "./node_modules/@types/estree/index.d.ts",
         "./src/parser/parser.ts",
@@ -1436,6 +1350,30 @@
         "./src/types.ts",
         "./src/utils/operators.ts",
         "./src/utils/stringify.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/mocks/context.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/createContext.ts",
+        "./src/interpreter/closure.ts",
+        "./src/types.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/transpiler/transpiler.ts": [
+        "./src/typings/acorn-walk.d.ts",
+        "./src/typings/astring.d.ts",
+        "./node_modules/@types/estree/index.d.ts",
+        "./node_modules/source-map/source-map.d.ts",
+        "./src/constants.ts",
+        "./src/types.ts",
+        "./src/utils/astCreator.ts",
+        "./src/errors/errors.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -1630,11 +1568,78 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.5/util.d.ts"
       ],
+      "./src/utils/dummyAstCreator.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/stepper/util.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts",
+        "./src/stepper/lib.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/stepper/stepper.ts": [
+        "./src/typings/astring.d.ts",
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/errors/errors.ts",
+        "./src/parser/parser.ts",
+        "./src/types.ts",
+        "./src/utils/astCreator.ts",
+        "./src/utils/dummyAstCreator.ts",
+        "./src/utils/operators.ts",
+        "./src/utils/rttc.ts",
+        "./src/stepper/converter.ts",
+        "./src/stepper/lib.ts",
+        "./src/stepper/util.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/stepper/lib.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/stdlib/misc.ts",
+        "./src/types.ts",
+        "./src/utils/astCreator.ts",
+        "./src/stepper/converter.ts",
+        "./src/stepper/stepper.ts",
+        "./src/stepper/util.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/stepper/converter.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/mocks/context.ts",
+        "./src/parser/parser.ts",
+        "./src/types.ts",
+        "./src/stepper/lib.ts",
+        "./src/stepper/stepper.ts",
+        "./src/stepper/util.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
       "./src/stepper/__tests__/stepper.ts": [
         "./src/mocks/context.ts",
         "./src/parser/parser.ts",
         "./src/types.ts",
         "./src/stepper/stepper.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.5/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.5/util.d.ts"
+      ],
+      "./src/transpiler/evalContainer.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -2451,50 +2456,6 @@
         "./node_modules/@types/estree/index.d.ts",
         "./src/types.ts"
       ],
-      "./src/utils/dummyAstCreator.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/types.ts"
-      ],
-      "./src/errors/timeoutErrors.ts": [
-        "./src/types.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/errors/runtimeSourceError.ts"
-      ],
-      "./src/utils/rttc.ts": [
-        "./src/types.ts",
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/errors/runtimeSourceError.ts"
-      ],
-      "./src/utils/operators.ts": [
-        "./node_modules/@types/estree/index.d.ts"
-      ],
-      "./src/mocks/context.ts": [
-        "./src/types.ts",
-        "./src/interpreter/closure.ts"
-      ],
-      "./src/stdlib/misc.ts": [
-        "./src/types.ts"
-      ],
-      "./src/stepper/util.ts": [
-        "./src/types.ts",
-        "./node_modules/@types/estree/index.d.ts"
-      ],
-      "./src/stepper/lib.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./src/types.ts"
-      ],
-      "./src/stepper/converter.ts": [
-        "./src/types.ts",
-        "./node_modules/@types/estree/index.d.ts"
-      ],
-      "./src/stepper/stepper.ts": [
-        "./src/types.ts",
-        "./node_modules/@types/estree/index.d.ts"
-      ],
-      "./src/transpiler/transpiler.ts": [
-        "./node_modules/@types/estree/index.d.ts",
-        "./node_modules/source-map/source-map.d.ts"
-      ],
       "./src/errors/validityErrors.ts": [
         "./node_modules/@types/estree/index.d.ts",
         "./src/types.ts"
@@ -2511,6 +2472,22 @@
       "./src/stdlib/inspector.ts": [
         "./src/index.ts",
         "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts"
+      ],
+      "./src/errors/timeoutErrors.ts": [
+        "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/errors/runtimeSourceError.ts"
+      ],
+      "./src/utils/rttc.ts": [
+        "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/errors/runtimeSourceError.ts"
+      ],
+      "./src/utils/operators.ts": [
+        "./node_modules/@types/estree/index.d.ts"
+      ],
+      "./src/interpreter/thunk.ts": [
         "./node_modules/@types/estree/index.d.ts"
       ],
       "./src/interpreter/interpreter.ts": [
@@ -2530,6 +2507,9 @@
       "./src/schedulers.ts": [
         "./src/types.ts"
       ],
+      "./src/stdlib/misc.ts": [
+        "./src/types.ts"
+      ],
       "./src/stdlib/parser.ts": [
         "./src/types.ts"
       ],
@@ -2538,6 +2518,14 @@
       ],
       "./src/createContext.ts": [
         "./src/types.ts"
+      ],
+      "./src/mocks/context.ts": [
+        "./src/types.ts",
+        "./src/interpreter/closure.ts"
+      ],
+      "./src/transpiler/transpiler.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./node_modules/source-map/source-map.d.ts"
       ],
       "./src/utils/testing.ts": [
         "./src/types.ts"
@@ -2548,6 +2536,26 @@
       ],
       "./src/stdlib/object.ts": [
         "./src/types.ts"
+      ],
+      "./src/utils/dummyAstCreator.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts"
+      ],
+      "./src/stepper/util.ts": [
+        "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts"
+      ],
+      "./src/stepper/stepper.ts": [
+        "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts"
+      ],
+      "./src/stepper/lib.ts": [
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts"
+      ],
+      "./src/stepper/converter.ts": [
+        "./src/types.ts",
+        "./node_modules/@types/estree/index.d.ts"
       ],
       "./src/typings/acorn-walk.d.ts": [
         "./node_modules/@types/estree/index.d.ts",
@@ -3096,33 +3104,26 @@
       "./src/parser/rules/index.ts",
       "./src/parser/syntaxBlacklist.ts",
       "./src/parser/parser.ts",
-      "./src/utils/dummyAstCreator.ts",
-      "./src/errors/timeoutErrors.ts",
-      "./src/utils/rttc.ts",
-      "./src/utils/operators.ts",
-      "./src/mocks/context.ts",
-      "./src/stdlib/misc.ts",
-      "./src/stepper/util.ts",
-      "./src/stepper/lib.ts",
-      "./src/stepper/converter.ts",
-      "./src/stepper/stepper.ts",
-      "./src/transpiler/evalContainer.ts",
-      "./src/transpiler/transpiler.ts",
       "./src/errors/validityErrors.ts",
       "./src/validator/validator.ts",
       "./src/index.ts",
       "./src/stdlib/inspector.ts",
-      "./src/interpreter/interpreter.ts",
+      "./src/errors/timeoutErrors.ts",
+      "./src/utils/rttc.ts",
+      "./src/utils/operators.ts",
       "./src/interpreter/closure.ts",
       "./src/utils/stringify.ts",
       "./src/errors/errors.ts",
       "./src/schedulers.ts",
       "./src/stdlib/list.ts",
       "./src/stdlib/list.prelude.ts",
+      "./src/stdlib/misc.ts",
       "./src/stdlib/parser.ts",
       "./src/stdlib/stream.ts",
       "./src/stdlib/stream.prelude.ts",
       "./src/createContext.ts",
+      "./src/mocks/context.ts",
+      "./src/transpiler/transpiler.ts",
       "./src/utils/testing.ts",
       "./src/__tests__/block-scoping.ts",
       "./src/__tests__/display.ts",
@@ -3139,13 +3140,20 @@
       "./src/parser/__tests__/allowed-syntax.ts",
       "./src/parser/__tests__/disallowed-syntax.ts",
       "./src/parser/rules/strictEquality.ts",
+      "./src/repl/repl.ts",
       "./src/stdlib/object.ts",
       "./src/stdlib/__tests__/list.ts",
       "./src/stdlib/__tests__/misc.ts",
       "./src/stdlib/__tests__/parser-errors.ts",
       "./src/stdlib/__tests__/parser.ts",
       "./src/stdlib/__tests__/stream.ts",
+      "./src/utils/dummyAstCreator.ts",
+      "./src/stepper/util.ts",
+      "./src/stepper/stepper.ts",
+      "./src/stepper/lib.ts",
+      "./src/stepper/converter.ts",
       "./src/stepper/__tests__/stepper.ts",
+      "./src/transpiler/evalContainer.ts",
       "./src/transpiler/__tests__/native.ts",
       "./src/transpiler/__tests__/transpiled-code.ts",
       "./src/typings/acorn-walk.d.ts",
@@ -3213,7 +3221,8 @@
       "./node_modules/@types/normalize-package-data/index.d.ts",
       "./node_modules/@types/yargs-parser/index.d.ts",
       "./node_modules/@types/yargs/index.d.ts",
-      "./src/repl/repl.ts"
+      "./src/interpreter/thunk.ts",
+      "./src/interpreter/interpreter.ts"
     ]
   },
   "version": "3.8.3"

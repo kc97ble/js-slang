@@ -9,6 +9,7 @@ import { conditionalExpression, literal, primitive } from '../utils/astCreator'
 import { evaluateBinaryExpression, evaluateUnaryExpression } from '../utils/operators'
 import * as rttc from '../utils/rttc'
 import Closure from './closure'
+import Thunk, { isThunk } from './thunk'
 
 class BreakValue {}
 
@@ -337,11 +338,12 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
     const left = yield* evaluate(node.left, context)
     const right = yield* evaluate(node.right, context)
 
-    const error = rttc.checkBinaryExpression(node, node.operator, left, right)
+    const error = !isThunk(left) && !isThunk(right) && rttc.checkBinaryExpression(node, node.operator, left, right)
     if (error) {
       return handleRuntimeError(context, error)
     }
-    return evaluateBinaryExpression(node.operator, left, right)
+    return new Thunk(node, () => evaluateBinaryExpression(node.operator, left, right))
+    // return evaluateBinaryExpression(node.operator, left, right)
   },
 
   ConditionalExpression: function*(node: es.ConditionalExpression, context: Context) {
@@ -580,6 +582,16 @@ export function* evaluate(node: es.Node, context: Context) {
   const result = yield* evaluators[node.type](node, context)
   yield* leave(context)
   return result
+}
+
+export function* forceEvaluate(node: es.Node, context: Context) {
+  const maybeThunk = yield* evaluate(node, context)
+  if (maybeThunk instanceof Thunk) {
+    const thunk = maybeThunk as Thunk
+    return thunk.forceEval()
+  } else {
+    return maybeThunk
+  }
 }
 
 export function* apply(
