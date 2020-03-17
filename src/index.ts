@@ -75,7 +75,7 @@ export async function runInContext(
   }
 
   const it = forceEvaluate(program, context)
-  let scheduler: Scheduler = new PreemptiveScheduler(theOptions.steps)
+  const scheduler: Scheduler = new PreemptiveScheduler(theOptions.steps)
   return scheduler.run(it, context)
 }
 
