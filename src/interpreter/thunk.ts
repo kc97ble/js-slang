@@ -3,6 +3,15 @@ import {Context} from '../types'
 
 type EvaluateFunction = (node: es.Node, context: Context) => Generator<any>
 
+function cloneContext(context: Context): Context {
+  let result = Object.assign({}, context)
+  result.externalSymbols = result.externalSymbols.slice()
+  result.errors = result.errors.slice()
+  result.runtime = Object.assign({}, result.runtime)
+  result.runtime.environments = result.runtime.environments.slice()
+  return result
+}
+
 export default class Thunk {
   public isEvaluated: boolean
   public result: any
@@ -14,7 +23,7 @@ export default class Thunk {
     this.originalNode = node
     this.isEvaluated = false
     this.result = null
-    this.context = context
+    this.context = cloneContext(context)
     this.evaluate = evaluate
   }
 

@@ -234,7 +234,7 @@
         "signature": "a97f5b33af9a7bb36a2c06b6ed20e5ac11f97c2128cee0d67d3769cb4bff3202"
       },
       "./src/index.ts": {
-        "version": "8833187f85fa6673d3e0aae6dfa1bbd877df057de400a9a66875b1c1730cb856",
+        "version": "42b31c116d654dc3a6b6cda6b49307eae02104e68f70dbca105595587c802ecd",
         "signature": "7706ba1d98827a075cb7396e317261c2cf078826c524e937e9fe5d7e7555068e"
       },
       "./src/stdlib/inspector.ts": {
@@ -254,7 +254,7 @@
         "signature": "353f179af893deece94c3b23c4ed1fd1cad1fa6353f67e9d982cb730f5cfbe1e"
       },
       "./src/interpreter/thunk.ts": {
-        "version": "da4e4991b89be268bedd185dde8fe71670c505e98013e56745829c50fa7b6931",
+        "version": "ec7d9cbe9f7675030a66e62a59904e5b9812d44c412541268611b6858eaca290",
         "signature": "cda8aa5cf10026ee3054044da236a56e2bb530bf6069f946db5f243ed449e5e3"
       },
       "./src/interpreter/interpreter.ts": {
@@ -3113,6 +3113,7 @@
       "./src/errors/timeoutErrors.ts",
       "./src/utils/rttc.ts",
       "./src/utils/operators.ts",
+      "./src/interpreter/interpreter.ts",
       "./src/interpreter/closure.ts",
       "./src/utils/stringify.ts",
       "./src/errors/errors.ts",
@@ -3223,8 +3224,7 @@
       "./node_modules/@types/normalize-package-data/index.d.ts",
       "./node_modules/@types/yargs-parser/index.d.ts",
       "./node_modules/@types/yargs/index.d.ts",
-      "./src/interpreter/thunk.ts",
-      "./src/interpreter/interpreter.ts"
+      "./src/interpreter/thunk.ts"
     ]
   },
   "version": "3.8.3"
