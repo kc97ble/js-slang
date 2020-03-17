@@ -220,7 +220,7 @@ function* reduceIf(
   node: es.IfStatement | es.ConditionalExpression,
   context: Context
 ): IterableIterator<es.Node> {
-  const test = yield* evaluate(node.test, context)
+  const test = yield* forceEvaluate(node.test, context)
 
   const error = rttc.checkIfStatement(node, test)
   if (error) {
@@ -236,7 +236,7 @@ function* evaluateBlockSatement(context: Context, node: es.BlockStatement) {
   hoistFunctionsAndVariableDeclarationsIdentifiers(context, node)
   let result
   for (const statement of node.body) {
-    result = yield* evaluate(statement, context)
+    result = yield* forceEvaluate(statement, context)
     if (
       result instanceof ReturnValue ||
       result instanceof TailCallReturnValue ||
@@ -297,18 +297,18 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   },
 
   CallExpression: function*(node: es.CallExpression, context: Context) {
-    const callee = yield* evaluate(node.callee, context)
+    const callee = yield* forceEvaluate(node.callee, context)
     const args = yield* getArgs(context, node)
     let thisContext
     if (node.callee.type === 'MemberExpression') {
-      thisContext = yield* evaluate(node.callee.object, context)
+      thisContext = yield* forceEvaluate(node.callee.object, context)
     }
     const result = yield* apply(context, callee, args, node, thisContext)
     return result
   },
 
   NewExpression: function*(node: es.NewExpression, context: Context) {
-    const callee = yield* evaluate(node.callee, context)
+    const callee = yield* forceEvaluate(node.callee, context)
     const args = []
     for (const arg of node.arguments) {
       args.push(yield* evaluate(arg, context))
@@ -325,7 +325,7 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   },
 
   UnaryExpression: function*(node: es.UnaryExpression, context: Context) {
-    const value = yield* evaluate(node.argument, context)
+    const value = yield* forceEvaluate(node.argument, context)
 
     const error = rttc.checkUnaryExpression(node, node.operator, value)
     if (error) {
@@ -335,15 +335,14 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   },
 
   BinaryExpression: function*(node: es.BinaryExpression, context: Context) {
-    const left = yield* evaluate(node.left, context)
-    const right = yield* evaluate(node.right, context)
+    const left = yield* forceEvaluate(node.left, context)
+    const right = yield* forceEvaluate(node.right, context)
 
-    const error = !isThunk(left) && !isThunk(right) && rttc.checkBinaryExpression(node, node.operator, left, right)
+    const error = rttc.checkBinaryExpression(node, node.operator, left, right)
     if (error) {
       return handleRuntimeError(context, error)
     }
-    return new Thunk(node, () => evaluateBinaryExpression(node.operator, left, right))
-    // return evaluateBinaryExpression(node.operator, left, right)
+    return evaluateBinaryExpression(node.operator, left, right)
   },
 
   ConditionalExpression: function*(node: es.ConditionalExpression, context: Context) {
@@ -382,10 +381,10 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
     if (initNode.type === 'VariableDeclaration') {
       hoistVariableDeclarations(context, initNode)
     }
-    yield* evaluate(initNode, context)
+    yield* forceEvaluate(initNode, context)
 
     let value
-    while (yield* evaluate(testNode, context)) {
+    while (yield* forceEvaluate(testNode, context)) {
       // create block context and shallow copy loop environment head
       // see https://www.ecma-international.org/ecma-262/6.0/#sec-for-statement-runtime-semantics-labelledevaluation
       // and https://hacks.mozilla.org/2015/07/es6-in-depth-let-and-const/
@@ -400,7 +399,7 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
         }
       }
 
-      value = yield* evaluate(node.body, context)
+      value = yield* forceEvaluate(node.body, context)
 
       // Remove block context
       popEnvironment(context)
@@ -415,7 +414,7 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
         break
       }
 
-      yield* evaluate(updateNode, context)
+      yield* forceEvaluate(updateNode, context)
     }
 
     popEnvironment(context)
@@ -424,13 +423,13 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   },
 
   MemberExpression: function*(node: es.MemberExpression, context: Context) {
-    let obj = yield* evaluate(node.object, context)
+    let obj = yield* forceEvaluate(node.object, context)
     if (obj instanceof Closure) {
       obj = obj.fun
     }
     let prop
     if (node.computed) {
-      prop = yield* evaluate(node.property, context)
+      prop = yield* forceEvaluate(node.property, context)
     } else {
       prop = (node.property as es.Identifier).name
     }
@@ -458,10 +457,10 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   AssignmentExpression: function*(node: es.AssignmentExpression, context: Context) {
     if (node.left.type === 'MemberExpression') {
       const left = node.left
-      const obj = yield* evaluate(left.object, context)
+      const obj = yield* forceEvaluate(left.object, context)
       let prop
       if (left.computed) {
-        prop = yield* evaluate(left.property, context)
+        prop = yield* forceEvaluate(left.property, context)
       } else {
         prop = (left.property as es.Identifier).name
       }
@@ -495,11 +494,11 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
   },
 
   IfStatement: function*(node: es.IfStatement | es.ConditionalExpression, context: Context) {
-    return yield* evaluate(yield* reduceIf(node, context), context)
+    return yield* forceEvaluate(yield* reduceIf(node, context), context)
   },
 
   ExpressionStatement: function*(node: es.ExpressionStatement, context: Context) {
-    return yield* evaluate(node.expression, context)
+    return yield* forceEvaluate(node.expression, context) // TODO: do we need to evaluate here?
   },
 
   ReturnStatement: function*(node: es.ReturnStatement, context: Context) {
@@ -518,7 +517,7 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
 
     // If we are now left with a CallExpression, then we use TCO
     if (returnExpression.type === 'CallExpression') {
-      const callee = yield* evaluate(returnExpression.callee, context)
+      const callee = yield* forceEvaluate(returnExpression.callee, context)
       const args = yield* getArgs(context, returnExpression)
       return new TailCallReturnValue(callee, args, returnExpression)
     } else {
@@ -530,12 +529,12 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
     let value: any // tslint:disable-line
     while (
       // tslint:disable-next-line
-      (yield* evaluate(node.test, context)) &&
+      (yield* forceEvaluate(node.test, context)) &&
       !(value instanceof ReturnValue) &&
       !(value instanceof BreakValue) &&
       !(value instanceof TailCallReturnValue)
     ) {
-      value = yield* evaluate(node.body, context)
+      value = yield* forceEvaluate(node.body, context)
     }
     if (value instanceof BreakValue) {
       return undefined
@@ -550,7 +549,7 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
       if (prop.key.type === 'Identifier') {
         key = prop.key.name
       } else {
-        key = yield* evaluate(prop.key, context)
+        key = yield* forceEvaluate(prop.key, context)
       }
       obj[key] = yield* evaluate(prop.value, context)
     }
@@ -577,21 +576,30 @@ export const evaluators: { [nodeType: string]: Evaluator<es.Node> } = {
 }
 // tslint:enable:object-literal-shorthand
 
-export function* evaluate(node: es.Node, context: Context) {
-  yield* visit(context, node)
-  const result = yield* evaluators[node.type](node, context)
-  yield* leave(context)
+export function* evaluate(node: es.Node, context: Context): IterableIterator<Value> {
+  const result = new Thunk(node, context, forceEvaluate)
   return result
+  // yield* visit(context, node)
+  // const result = yield* evaluators[node.type](node, context)
+  // yield* leave(context)
+  // return result
 }
 
 export function* forceEvaluate(node: es.Node, context: Context) {
-  const maybeThunk = yield* evaluate(node, context)
-  if (maybeThunk instanceof Thunk) {
-    const thunk = maybeThunk as Thunk
-    return thunk.forceEval()
-  } else {
-    return maybeThunk
+  yield* visit(context, node)
+  let result = yield* evaluators[node.type](node, context)
+  yield* leave(context)
+  while (result instanceof Thunk) {
+    result = yield* result.forceEval()
   }
+  return result
+  // const maybeThunk = yield* evaluate(node, context)
+  // if (maybeThunk instanceof Thunk) {
+  //   const thunk = maybeThunk as Thunk
+  //   return thunk.forceEval()
+  // } else {
+  //   return maybeThunk
+  // }
 }
 
 export function* apply(

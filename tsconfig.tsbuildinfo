@@ -254,12 +254,12 @@
         "signature": "353f179af893deece94c3b23c4ed1fd1cad1fa6353f67e9d982cb730f5cfbe1e"
       },
       "./src/interpreter/thunk.ts": {
-        "version": "3337dfa88c92870acf76a662ba43d80d6c56a62193e886275a8d36b000acac1f",
-        "signature": "538f3f92cae8145934ddef1e4c6153cacb9a179dce18e332f032bd3a92605532"
+        "version": "da4e4991b89be268bedd185dde8fe71670c505e98013e56745829c50fa7b6931",
+        "signature": "cda8aa5cf10026ee3054044da236a56e2bb530bf6069f946db5f243ed449e5e3"
       },
       "./src/interpreter/interpreter.ts": {
-        "version": "21acda7a5283b16a04def0478aa856c166114ca72821956d685613a50202e852",
-        "signature": "f604f64f41537b453da88c8cd6741c0c032082fa381adac3e2a88c64fa68e605"
+        "version": "8466649ba5c16e45aac9da63e655bf3f1dfe0643982813d2febbaa67e464189b",
+        "signature": "53b7d3d899e052fb8ea8ebdd443e9b93f14bc495cc0264e5f7c58534d3a268a4"
       },
       "./src/interpreter/closure.ts": {
         "version": "948d4c07337c5a372e8e91153ecb0dd3a7785dc02808e4a69dbfbbf62c5a8753",
@@ -1230,6 +1230,7 @@
       ],
       "./src/interpreter/thunk.ts": [
         "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.5/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -2488,7 +2489,8 @@
         "./node_modules/@types/estree/index.d.ts"
       ],
       "./src/interpreter/thunk.ts": [
-        "./node_modules/@types/estree/index.d.ts"
+        "./node_modules/@types/estree/index.d.ts",
+        "./src/types.ts"
       ],
       "./src/interpreter/interpreter.ts": [
         "./node_modules/@types/estree/index.d.ts",
