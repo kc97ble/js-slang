@@ -1,10 +1,10 @@
 import * as es from 'estree'
-import {Context} from '../types'
+import { Context } from '../types'
 
 type EvaluateFunction = (node: es.Node, context: Context) => Generator<any>
 
 function cloneContext(context: Context): Context {
-  let result = Object.assign({}, context)
+  const result = Object.assign({}, context)
   result.externalSymbols = result.externalSymbols.slice()
   result.errors = result.errors.slice()
   result.runtime = Object.assign({}, result.runtime)

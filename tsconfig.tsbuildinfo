@@ -254,7 +254,7 @@
         "signature": "353f179af893deece94c3b23c4ed1fd1cad1fa6353f67e9d982cb730f5cfbe1e"
       },
       "./src/interpreter/thunk.ts": {
-        "version": "ec7d9cbe9f7675030a66e62a59904e5b9812d44c412541268611b6858eaca290",
+        "version": "1e637576c95278b8bcf22aa3447572781afa50cf6b3cb6a13baae4fd7b07b7aa",
         "signature": "cda8aa5cf10026ee3054044da236a56e2bb530bf6069f946db5f243ed449e5e3"
       },
       "./src/interpreter/interpreter.ts": {
