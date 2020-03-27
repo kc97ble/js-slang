@@ -19,33 +19,29 @@ function array_test(x: any) {
   }
 }
 
-
 // pair constructs a pair using a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
-export function* pair(x: any, xs: any){
+export function* pair(x: any, xs: any) {
   // return new Thunk([x,xs], context, forceEvaluate)
-  const a = ()=>[x,xs]
+  const a = () => [x, xs]
   return a
 }
-
 
 // is_pair returns true iff arg is a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
 export function* is_pair(x: any) {
-  return  isFunction(x) && array_test(x()) && x().length === 2
+  return isFunction(x) && array_test(x()) && x().length === 2
 }
-
 
 // head returns the first component of the given pair,
 // throws an exception if the argument is not a pair
 // LOW-LEVEL FUNCTION, NOT SOURCE
 export function* head(xs: any) {
-  if (xs instanceof Thunk){
+  if (xs instanceof Thunk) {
     while (xs instanceof Thunk) {
       xs = yield* xs.forceEval()
     }
   }
-
 
   if (is_pair(xs)) {
     let p = xs()[0]
@@ -63,7 +59,7 @@ export function* head(xs: any) {
 // throws an exception if the argument is not a pair
 // LOW-LEVEL FUNCTION, NOT SOURCE
 export function* tail(xs: any) {
-  if (xs instanceof Thunk){
+  if (xs instanceof Thunk) {
     while (xs instanceof Thunk) {
       xs = yield* xs.forceEval()
     }
@@ -91,7 +87,7 @@ export function* is_null(xs: any) {
 export function* list(...elements: any[]) {
   let theList = null
   for (let i = elements.length - 1; i >= 0; i -= 1) {
-    theList = pair(elements[i], theList)
+    theList = yield* pair(elements[i], theList)
   }
   return theList
 }
@@ -128,7 +124,7 @@ export function vector_to_list(context: Context, vector: any[]): List {
 
 export function* set_head(xs: any, x: any) {
   if (is_pair(xs)) {
-    xs = pair(x,xs()[1])
+    xs = pair(x, xs()[1])
     return undefined
   } else {
     throw new Error(
@@ -143,7 +139,7 @@ export function* set_head(xs: any, x: any) {
 
 export function* set_tail(xs: any, x: any) {
   if (is_pair(xs)) {
-    xs = pair(xs()[0],x)
+    xs = pair(xs()[0], x)
     return undefined
   } else {
     throw new Error(

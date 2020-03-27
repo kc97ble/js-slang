@@ -634,7 +634,7 @@ export function* apply(
       }
     } else if (typeof fun === 'function') {
       try {
-        result = fun.apply(thisContext, args)
+        result = yield* fun.apply(thisContext, args)
         break
       } catch (e) {
         // Recover from exception
