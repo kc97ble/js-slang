@@ -203,7 +203,7 @@ const checkNumberOfArguments = (
 function* getArgs(context: Context, call: es.CallExpression) {
   const args = []
   for (const arg of call.arguments) {
-    args.push(yield* evaluate(arg, context))
+    args.push(yield* forceEvaluate(arg, context))
   }
   return args
 }
@@ -634,7 +634,7 @@ export function* apply(
       }
     } else if (typeof fun === 'function') {
       try {
-        result = fun.apply(thisContext, args)
+        result = yield* fun.apply(thisContext, args)
         break
       } catch (e) {
         // Recover from exception
