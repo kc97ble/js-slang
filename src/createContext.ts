@@ -2,7 +2,7 @@
 
 import { GLOBAL, GLOBAL_KEY_TO_ACCESS_NATIVE_STORAGE } from './constants'
 import { AsyncScheduler } from './schedulers'
-import * as list from './stdlib/list'
+import * as list from './stdlib/thunk_list'
 import { list_to_vector } from './stdlib/list'
 import { listPrelude } from './stdlib/list.prelude'
 import * as misc from './stdlib/misc'
@@ -94,12 +94,26 @@ const defineSymbol = (context: Context, name: string, value: Value) => {
 // If the builtin is a function, wrap it such that its toString hides the implementation
 export const defineBuiltin = (context: Context, name: string, value: Value) => {
   if (typeof value === 'function') {
-    const wrapped = (...args: any) => value(...args)
-    const funName = name.split('(')[0].trim()
-    const repr = `function ${name} {\n\t[implementation hidden]\n}`
-    wrapped.toString = () => repr
 
-    defineSymbol(context, funName, wrapped)
+    if (value.hasOwnProperty('isThunkAware')){
+      const wrapped = Object.assign(
+        (...args: any) => value(...args),
+        {isThunkAware : value.isThunkAware}
+      )
+      const funName = name.split('(')[0].trim()
+      const repr = `function ${name} {\n\t[implementation hidden]\n}`
+      wrapped.toString = () => repr
+      defineSymbol(context, funName, wrapped)
+    }
+    else{
+      const wrapped = (...args: any) => value(...args)
+      const funName = name.split('(')[0].trim()
+      const repr = `function ${name} {\n\t[implementation hidden]\n}`
+      wrapped.toString = () => repr
+
+      defineSymbol(context, funName, wrapped)
+    }
+
   } else {
     defineSymbol(context, name, value)
   }
