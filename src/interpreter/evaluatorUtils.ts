@@ -8,7 +8,7 @@ import { conditionalExpression, literal } from '../utils/astCreator'
 import * as rttc from '../utils/rttc'
 import Closure from './closure'
 import * as env from './environmentUtils'
-import { makeThunkAware } from './thunk'
+import Thunk, { makeThunkAware, dethunk } from './thunk'
 
 export class BreakValue {}
 
@@ -89,6 +89,18 @@ export function* evaluateBlockStatement(
     }
   }
   return result
+}
+
+export function* dethunkProgramValue(value:any):any {
+  if(value instanceof Thunk){
+    return yield* dethunk(value)
+  }
+  else if (Array.isArray(value)) {
+    for(let i=0; i<value.length; i++){
+      value[i] = yield* dethunkProgramValue(value[i])
+    }
+  }
+  return value
 }
 
 export function* apply(
