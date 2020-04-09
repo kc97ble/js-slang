@@ -6,7 +6,7 @@ import { evaluateBinaryExpression, evaluateUnaryExpression } from '../utils/oper
 import * as rttc from '../utils/rttc'
 import Closure, { BoundedApplyFunction } from './closure'
 import * as env from './environmentUtils'
-import { BreakValue, ContinueValue, ReturnValue, TailCallReturnValue, dethunkProgramValue } from './evaluatorUtils'
+import { BreakValue, ContinueValue, ReturnValue, TailCallReturnValue } from './evaluatorUtils'
 import { Evaluator, getArgs, apply } from './evaluatorUtils'
 import { transformLogicalExpression, reduceIf, evaluateBlockStatement } from './evaluatorUtils'
 import { makeThunkAware } from './thunk'
@@ -343,11 +343,7 @@ export function getEvaluators(
       context.numberOfOuterEnvironments += 1
       const environment = env.createBlockEnvironment(context, 'programEnvironment')
       env.pushEnvironment(context, environment)
-      let value =  yield* evaluateBlockStatement(context, node, forceEvaluate)
-
-      value = yield* dethunkProgramValue(value)
-
-      return value
+      return yield* evaluateBlockStatement(context, node, forceEvaluate)
     }
   }
   // tslint:enable:object-literal-shorthand
