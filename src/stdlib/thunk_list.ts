@@ -76,7 +76,8 @@ Object.defineProperty(tail, 'isThunkAware', descriptor);
 
 // is_null returns true if arg is exactly null
 // LOW-LEVEL FUNCTION, NOT SOURCE
-export function is_null(xs: List) {
+export function* is_null(xs: List) {
+  xs = yield* dethunk(xs)
   return xs === null
 }
 Object.defineProperty(is_null, 'isThunkAware', descriptor);
