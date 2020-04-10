@@ -83,7 +83,7 @@ export function is_null(xs: List) {
 export function* list(...elements: any[]){
   let theList = null
   for (let i = elements.length - 1; i >= 0; i -= 1) {
-    theList = pair(elements[i], theList)
+    theList = yield* pair(elements[i], theList)
   }
   return theList
 }
@@ -96,7 +96,7 @@ Object.defineProperty(list, 'isThunkAware', descriptor);
 
 export function* set_head(xs: any, x: any) {
   if (is_pair(xs)) {
-    xs = pair(x,tail(xs))
+    xs = yield* pair(x, yield* tail(xs))
     return undefined
   } else {
     throw new Error(
@@ -112,7 +112,7 @@ Object.defineProperty(set_head, 'isThunkAware', descriptor);
 
 export function* set_tail(xs: any, x: any) {
   if (is_pair(xs)) {
-    xs = pair(head(xs),x)
+    xs = yield* pair(yield* head(xs),x)
     return undefined
   } else {
     throw new Error(

@@ -33,6 +33,7 @@ interface TestOptions {
   chapter?: number
   testBuiltins?: TestBuiltins
   native?: boolean
+  lazyEvaluation?: boolean
 }
 
 export function createTestContext({
@@ -85,11 +86,13 @@ async function testInContext(code: string, options: TestOptions): Promise<TestRe
     resultStatus: result.status,
     result: result.status === 'finished' ? result.value : undefined
   })
+  const UseLazy = options.lazyEvaluation ? options.lazyEvaluation : false
   const interpretedResult = getTestResult(
     interpretedTestContext,
     await runInContext(code, interpretedTestContext, {
       scheduler,
-      executionMethod: 'interpreter'
+      executionMethod: 'interpreter',
+      useLazyEval: UseLazy
     })
   )
   if (options.native) {
