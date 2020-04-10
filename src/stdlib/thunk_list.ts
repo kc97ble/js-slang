@@ -39,9 +39,11 @@ Object.defineProperty(pair, 'isThunkAware', descriptor);
 
 // is_pair returns true iff arg is a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
-export function is_pair(x: any) {
+export function* is_pair(x: any) {
+  x = yield* dethunk(x)
   return array_test(x) && x.length === 2
 }
+Object.defineProperty(is_pair, 'isThunkAware', descriptor);
 
 // head returns the first component of the given pair,
 // throws an exception if the argument is not a pair
@@ -50,7 +52,7 @@ export function is_pair(x: any) {
 
 export function* head(xs: any) {
   xs = yield* dethunk(xs)
-  if (is_pair(xs)) {
+  if (yield* is_pair(xs)) {
     return yield* dethunk(xs[0])
   } else {
     throw new Error('head(xs) expects a pair as argument xs, but encountered ' + stringify(xs))
@@ -64,7 +66,7 @@ Object.defineProperty(head, 'isThunkAware', descriptor);
 // LOW-LEVEL FUNCTION, NOT SOURCE
 export function* tail(xs: any) {
   xs = yield* dethunk(xs)
-  if (is_pair(xs)) {
+  if (yield* is_pair(xs)) {
     return yield* dethunk(xs[1])
   } else {
     throw new Error('tail(xs) expects a pair as argument xs, but encountered ' + stringify(xs))
@@ -77,6 +79,7 @@ Object.defineProperty(tail, 'isThunkAware', descriptor);
 export function is_null(xs: List) {
   return xs === null
 }
+Object.defineProperty(is_null, 'isThunkAware', descriptor);
 
 // list makes a list out of its arguments
 // LOW-LEVEL FUNCTION, NOT SOURCE
@@ -90,12 +93,35 @@ export function* list(...elements: any[]){
 Object.defineProperty(list, 'isThunkAware', descriptor);
 
 
+// Returns the item in xs (assumed to be a list) at index n,
+// assumed to be a non-negative integer.
+// Note: the first item is at position 0
+
+export function* list_ref(xs:any, n:any):any {
+  xs = yield* dethunk(xs)
+  n = yield* dethunk(n)
+  if (yield* is_pair(xs)){
+    if (n===0){
+      return yield* head(xs)
+    }
+    else{
+      return yield* list_ref(yield* tail(xs), n - 1);
+    }
+  } else {
+    throw new Error(
+      'list_ref(xs,n) expects a pair as argument xs, but encountered ' + stringify(xs)
+    )
+  }
+}
+Object.defineProperty(list_ref, 'isThunkAware', descriptor);
+
 // set_head(xs,x) changes the head of given pair xs to be x,
 // throws an exception if the argument is not a pair
-// LOW-LEVEL FUNCTION, NOT SOURCE
+// LOW-LEVEL FUNCTION, NO SOURCE
 
 export function* set_head(xs: any, x: any) {
-  if (is_pair(xs)) {
+  xs = yield* dethunk(xs)
+  if (yield* is_pair(xs)) {
     xs = yield* pair(x, yield* tail(xs))
     return undefined
   } else {
@@ -111,7 +137,7 @@ Object.defineProperty(set_head, 'isThunkAware', descriptor);
 // LOW-LEVEL FUNCTION, NOT SOURCE
 
 export function* set_tail(xs: any, x: any) {
-  if (is_pair(xs)) {
+  if (yield* is_pair(xs)) {
     xs = yield* pair(yield* head(xs),x)
     return undefined
   } else {

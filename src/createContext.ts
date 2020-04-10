@@ -171,6 +171,7 @@ export const importBuiltins = (context: Context, externalBuiltIns: CustomBuiltIn
     defineBuiltin(context, 'tail(xs)', list.tail)
     defineBuiltin(context, 'is_null(val)', list.is_null)
     defineBuiltin(context, 'list(...values)', list.list)
+    defineBuiltin(context, 'list_ref(xs,n)', list.list_ref)
     defineBuiltin(context, 'draw_data(xs)', visualiseList)
   }
 

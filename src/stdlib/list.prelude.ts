@@ -139,13 +139,6 @@ function enum_list(start, end) {
   return start > end ? null : pair(start, enum_list(start + 1, end));
 }
 
-// Returns the item in xs (assumed to be a list) at index n,
-// assumed to be a non-negative integer.
-// Note: the first item is at position 0
-
-function list_ref(xs, n) {
-  return n === 0 ? head(xs) : list_ref(tail(xs), n - 1);
-}
 
 // accumulate applies an operation op (assumed to be a binary function)
 // to elements of sequence (assumed to be a list) in a right-to-left order.
