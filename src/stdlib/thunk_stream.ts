@@ -6,8 +6,8 @@ import { head, is_null, is_pair, list, pair, tail } from './thunk_list' // delet
 
 // type Stream = null | Pair<any, () => Stream>
 
-const descriptor = Object.create(null); // no inherited properties
-descriptor.value = true;
+let descriptor = Object.create(null)
+descriptor.value = true
 
 export function* stream_tail(xs: any) {
   let theTail
@@ -35,13 +35,16 @@ Object.defineProperty(stream_tail, 'isThunkAware', descriptor);
 // Lazy? No: In this implementation, we generate first a
 //           complete list, and then a stream using list_to_stream
 export function* stream(...elements: any[]) {
-  return list_to_stream(list(...elements))
+  return yield* list_to_stream(yield* list(...elements))
 }
 Object.defineProperty(stream, 'isThunkAware', descriptor);
 
-export function* list_to_stream(xs: any) {
-  if (is_null(xs)||is_pair(xs)){
-    return is_null(xs) ? null : yield* pair(yield* head(xs), () => list_to_stream(yield* tail(xs)))
+export function* list_to_stream(xs: any):any {
+  if (yield* is_null(xs)) {
+    return null
+  } else if (yield* is_pair(xs)){
+    let theTail =  yield* list_to_stream(yield* tail(xs))
+    return yield* pair(yield* head(xs), () => theTail)
   }
   else{
     throw new Error('list_to_stream(xs) expects a list as argument xs, but encountered ' + stringify(xs))

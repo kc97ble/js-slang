@@ -19,17 +19,11 @@ function array_test(x: any) {
   }
 }
 
-const descriptor = Object.create(null); // no inherited properties
-descriptor.value = true;
+let descriptor = Object.create(null)
+descriptor.value = true
 
 // pair constructs a pair using a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
-/*
-export const pair = Object.assign(
-  (x: any, xs: any) => {return [x, xs]},
-  {isThunkAware : true}
-)
-*/
 
 export function* pair(x: any, xs: any){
   return [x, xs]
@@ -48,7 +42,6 @@ Object.defineProperty(is_pair, 'isThunkAware', descriptor);
 // head returns the first component of the given pair,
 // throws an exception if the argument is not a pair
 // LOW-LEVEL FUNCTION, NOT SOURCE
-
 
 export function* head(xs: any) {
   xs = yield* dethunk(xs)
@@ -123,7 +116,7 @@ Object.defineProperty(list_ref, 'isThunkAware', descriptor);
 export function* set_head(xs: any, x: any) {
   xs = yield* dethunk(xs)
   if (yield* is_pair(xs)) {
-    xs = yield* pair(x, yield* tail(xs))
+    xs[0] = x
     return undefined
   } else {
     throw new Error(
@@ -138,8 +131,9 @@ Object.defineProperty(set_head, 'isThunkAware', descriptor);
 // LOW-LEVEL FUNCTION, NOT SOURCE
 
 export function* set_tail(xs: any, x: any) {
+  xs = yield* dethunk(xs)
   if (yield* is_pair(xs)) {
-    xs = yield* pair(yield* head(xs),x)
+    xs[1] = x
     return undefined
   } else {
     throw new Error(

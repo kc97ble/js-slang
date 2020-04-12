@@ -56,9 +56,7 @@ function main() {
 
     let useLazyEval = false;
     if ((!useSubst && ExecutionMethod==='interpreter')&&
-        ((process.argv.length > 4 && process.argv[4]==='lazy')
-          ||(process.argv.length > 3 && process.argv[3]==='lazy')
-          ||(process.argv.length > 2 && process.argv[2]==='lazy'))){
+        (process.argv.includes('lazy'))){
       useLazyEval = true;
     }
     startRepl(chapter ,useSubst, ExecutionMethod, useLazyEval)

@@ -7,7 +7,7 @@ import { list_to_vector } from './stdlib/list'
 import { listPrelude } from './stdlib/list.prelude'
 import * as misc from './stdlib/misc'
 import * as parser from './stdlib/parser'
-import * as stream from './stdlib/stream'
+import * as stream from './stdlib/thunk_stream'
 import { streamPrelude } from './stdlib/stream.prelude'
 import { Context, CustomBuiltIns, Value } from './types'
 import * as operators from './utils/operators'
@@ -95,24 +95,17 @@ const defineSymbol = (context: Context, name: string, value: Value) => {
 export const defineBuiltin = (context: Context, name: string, value: Value) => {
   if (typeof value === 'function') {
 
-    if (value.hasOwnProperty('isThunkAware')){
-      const wrapped = Object.assign(
-        (...args: any) => value(...args),
-        {isThunkAware : value.isThunkAware}
-      )
-      const funName = name.split('(')[0].trim()
-      const repr = `function ${name} {\n\t[implementation hidden]\n}`
-      wrapped.toString = () => repr
-      defineSymbol(context, funName, wrapped)
+    let wrapped = (...args: any) => value(...args)
+    if (value.hasOwnProperty('isThunkAware')){  
+      wrapped = Object.assign(
+        wrapped,
+        {isThunkAware : value.isThunkAware})
     }
-    else{
-      const wrapped = (...args: any) => value(...args)
-      const funName = name.split('(')[0].trim()
-      const repr = `function ${name} {\n\t[implementation hidden]\n}`
-      wrapped.toString = () => repr
-
-      defineSymbol(context, funName, wrapped)
-    }
+      
+    const funName = name.split('(')[0].trim()
+    const repr = `function ${name} {\n\t[implementation hidden]\n}`
+    wrapped.toString = () => repr
+    defineSymbol(context, funName, wrapped)
 
   } else {
     defineSymbol(context, name, value)

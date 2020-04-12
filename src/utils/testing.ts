@@ -86,13 +86,13 @@ async function testInContext(code: string, options: TestOptions): Promise<TestRe
     resultStatus: result.status,
     result: result.status === 'finished' ? result.value : undefined
   })
-  const UseLazy = options.lazyEvaluation ? options.lazyEvaluation : false
+  const useLazyEval = !!options.lazyEvaluation
   const interpretedResult = getTestResult(
     interpretedTestContext,
     await runInContext(code, interpretedTestContext, {
       scheduler,
       executionMethod: 'interpreter',
-      useLazyEval: UseLazy
+      useLazyEval: useLazyEval
     })
   )
   if (options.native) {
