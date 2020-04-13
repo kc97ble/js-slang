@@ -6,8 +6,6 @@ import { head, is_null, is_pair, list, pair, tail } from './thunk_list' // delet
 
 // type Stream = null | Pair<any, () => Stream>
 
-let descriptor = Object.create(null)
-descriptor.value = true
 
 export function* stream_tail(xs: any) {
   let theTail
@@ -28,7 +26,7 @@ export function* stream_tail(xs: any) {
     )
   }
 }
-Object.defineProperty(stream_tail, 'isThunkAware', descriptor);
+Object.defineProperty(stream_tail, 'isThunkAware', {value: true});
 
 // stream makes a stream out of its arguments
 // LOW-LEVEL FUNCTION, NOT SOURCE
@@ -37,17 +35,17 @@ Object.defineProperty(stream_tail, 'isThunkAware', descriptor);
 export function* stream(...elements: any[]) {
   return yield* list_to_stream(yield* list(...elements))
 }
-Object.defineProperty(stream, 'isThunkAware', descriptor);
+Object.defineProperty(stream, 'isThunkAware', {value: true});
 
 export function* list_to_stream(xs: any):any {
   if (yield* is_null(xs)) {
     return null
   } else if (yield* is_pair(xs)){
-    let theTail =  yield* list_to_stream(yield* tail(xs))
+    const theTail =  yield* list_to_stream(yield* tail(xs))
     return yield* pair(yield* head(xs), () => theTail)
   }
   else{
     throw new Error('list_to_stream(xs) expects a list as argument xs, but encountered ' + stringify(xs))
   }
 }
-Object.defineProperty(list_to_stream, 'isThunkAware', descriptor);
+Object.defineProperty(list_to_stream, 'isThunkAware', {value: true});
