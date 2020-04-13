@@ -19,16 +19,13 @@ function array_test(x: any) {
   }
 }
 
-let descriptor = Object.create(null)
-descriptor.value = true
-
 // pair constructs a pair using a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
 
 export function* pair(x: any, xs: any){
   return [x, xs]
 }
-Object.defineProperty(pair, 'isThunkAware', descriptor);
+Object.defineProperty(pair, 'isThunkAware', {value: true});
 
 
 // is_pair returns true iff arg is a two-element array
@@ -37,7 +34,7 @@ export function* is_pair(x: any) {
   x = yield* dethunk(x)
   return array_test(x) && x.length === 2
 }
-Object.defineProperty(is_pair, 'isThunkAware', descriptor);
+Object.defineProperty(is_pair, 'isThunkAware', {value: true});
 
 // head returns the first component of the given pair,
 // throws an exception if the argument is not a pair
@@ -51,7 +48,7 @@ export function* head(xs: any) {
     throw new Error('head(xs) expects a pair as argument xs, but encountered ' + stringify(xs))
   }
 }
-Object.defineProperty(head, 'isThunkAware', descriptor);
+Object.defineProperty(head, 'isThunkAware', {value: true});
 
 
 // tail returns the second component of the given pair
@@ -65,7 +62,7 @@ export function* tail(xs: any) {
     throw new Error('tail(xs) expects a pair as argument xs, but encountered ' + stringify(xs))
   }
 }
-Object.defineProperty(tail, 'isThunkAware', descriptor);
+Object.defineProperty(tail, 'isThunkAware', {value: true});
 
 // is_null returns true if arg is exactly null
 // LOW-LEVEL FUNCTION, NOT SOURCE
@@ -73,7 +70,7 @@ export function* is_null(xs: List) {
   xs = yield* dethunk(xs)
   return xs === null
 }
-Object.defineProperty(is_null, 'isThunkAware', descriptor);
+Object.defineProperty(is_null, 'isThunkAware', {value: true});
 
 // list makes a list out of its arguments
 // LOW-LEVEL FUNCTION, NOT SOURCE
@@ -84,30 +81,9 @@ export function* list(...elements: any[]){
   }
   return theList
 }
-Object.defineProperty(list, 'isThunkAware', descriptor);
+Object.defineProperty(list, 'isThunkAware', {value: true});
 
 
-// Returns the item in xs (assumed to be a list) at index n,
-// assumed to be a non-negative integer.
-// Note: the first item is at position 0
-
-export function* list_ref(xs:any, n:any):any {
-  xs = yield* dethunk(xs)
-  n = yield* dethunk(n)
-  if (yield* is_pair(xs)){
-    if (n===0){
-      return yield* head(xs)
-    }
-    else{
-      return yield* list_ref(yield* tail(xs), n - 1);
-    }
-  } else {
-    throw new Error(
-      'list_ref(xs,n) expects a pair as argument xs, but encountered ' + stringify(xs)
-    )
-  }
-}
-Object.defineProperty(list_ref, 'isThunkAware', descriptor);
 
 // set_head(xs,x) changes the head of given pair xs to be x,
 // throws an exception if the argument is not a pair
@@ -124,7 +100,7 @@ export function* set_head(xs: any, x: any) {
     )
   }
 }
-Object.defineProperty(set_head, 'isThunkAware', descriptor);
+Object.defineProperty(set_head, 'isThunkAware', {value: true});
 
 // set_tail(xs,x) changes the tail of given pair xs to be x,
 // throws an exception if the argument is not a pair
@@ -141,4 +117,4 @@ export function* set_tail(xs: any, x: any) {
     )
   }
 }
-Object.defineProperty(set_tail, 'isThunkAware', descriptor);
+Object.defineProperty(set_tail, 'isThunkAware', {value: true});

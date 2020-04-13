@@ -7,7 +7,7 @@ import { ExecutionMethod } from '../types'
 
 function startRepl(chapter = 1, useSubst: boolean, theExecutionMethod:ExecutionMethod, useLazyEval:boolean, prelude = '') {
   // use defaults for everything
-  const context = createContext(chapter)
+  const context = createContext(chapter, [], useLazyEval)
   const options: Partial<IOptions> = { scheduler: 'preemptive', useSubst, executionMethod: theExecutionMethod , useLazyEval  }
   runInContext(prelude, context, options).then(preludeResult => {
     if (preludeResult.status === 'finished') {
