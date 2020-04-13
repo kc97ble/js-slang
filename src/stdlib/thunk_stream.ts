@@ -2,10 +2,9 @@ import { stringify } from '../utils/stringify'
 // stream_tail returns the second component of the given pair
 // throws an exception if the argument is not a pair
 
-import { head, is_null, is_pair, list, pair, tail } from './thunk_list' // delete List & Pair
+import { head, is_null, is_pair, list, List, pair, Pair, tail } from './thunk_list' // delete List & Pair
 
-// type Stream = null | Pair<any, () => Stream>
-
+type Stream = Pair<any, () => any>|null
 
 export function* stream_tail(xs: any) {
   let theTail
@@ -32,16 +31,17 @@ Object.defineProperty(stream_tail, 'isThunkAware', {value: true});
 // LOW-LEVEL FUNCTION, NOT SOURCE
 // Lazy? No: In this implementation, we generate first a
 //           complete list, and then a stream using list_to_stream
-export function* stream(...elements: any[]) {
+export function* stream(...elements: any[]):Generator<Stream> {
   return yield* list_to_stream(yield* list(...elements))
 }
 Object.defineProperty(stream, 'isThunkAware', {value: true});
 
-export function* list_to_stream(xs: any):any {
+export function* list_to_stream(xs: List):Generator<Stream> {
+
   if (yield* is_null(xs)) {
     return null
   } else if (yield* is_pair(xs)){
-    const theTail =  yield* list_to_stream(yield* tail(xs))
+    const theTail = yield* list_to_stream(yield* tail(xs))
     return yield* pair(yield* head(xs), () => theTail)
   }
   else{

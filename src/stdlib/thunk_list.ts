@@ -22,7 +22,7 @@ function array_test(x: any) {
 // pair constructs a pair using a two-element array
 // LOW-LEVEL FUNCTION, NOT SOURCE
 
-export function* pair(x: any, xs: any){
+export function* pair<H,T>(x: H, xs: T):Generator<Pair<H,T>> {
   return [x, xs]
 }
 Object.defineProperty(pair, 'isThunkAware', {value: true});
@@ -66,7 +66,7 @@ Object.defineProperty(tail, 'isThunkAware', {value: true});
 
 // is_null returns true if arg is exactly null
 // LOW-LEVEL FUNCTION, NOT SOURCE
-export function* is_null(xs: List) {
+export function* is_null(xs: any) {
   xs = yield* dethunk(xs)
   return xs === null
 }
@@ -74,7 +74,7 @@ Object.defineProperty(is_null, 'isThunkAware', {value: true});
 
 // list makes a list out of its arguments
 // LOW-LEVEL FUNCTION, NOT SOURCE
-export function* list(...elements: any[]){
+export function* list(...elements: any[]):Generator<List> {
   let theList = null
   for (let i = elements.length - 1; i >= 0; i -= 1) {
     theList = yield* pair(elements[i], theList)
