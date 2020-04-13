@@ -98,12 +98,12 @@ export const defineBuiltin = (context: Context, name: string, value: Value) => {
   if (typeof value === 'function') {
 
     let wrapped = (...args: any) => value(...args)
-    if (value.hasOwnProperty('isThunkAware')){  
+    if (value.hasOwnProperty('isThunkAware')){
       wrapped = Object.assign(
         wrapped,
         {isThunkAware : value.isThunkAware})
     }
-      
+
     const funName = name.split('(')[0].trim()
     const repr = `function ${name} {\n\t[implementation hidden]\n}`
     wrapped.toString = () => repr
@@ -169,7 +169,6 @@ export const importBuiltins = (context: Context, externalBuiltIns: CustomBuiltIn
     defineBuiltin(context, 'tail(xs)', list.tail)
     defineBuiltin(context, 'is_null(val)', list.is_null)
     defineBuiltin(context, 'list(...values)', list.list)
-   // defineBuiltin(context, 'list_ref(xs,n)', list.list_ref)
     defineBuiltin(context, 'draw_data(xs)', visualiseList)
   }
 
@@ -239,7 +238,7 @@ const createContext = <T>(
   useLazyEval?: boolean,
   externalContext?: T,
   externalBuiltIns: CustomBuiltIns = defaultBuiltIns
-  
+
 ) => {
   const context = createEmptyContext(chapter, externalSymbols, externalContext)
 
